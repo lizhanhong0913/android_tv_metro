@@ -56,7 +56,8 @@ public class MineView extends RelativeLayout implements ImageChangedListener {
     @SuppressWarnings("deprecation")
 	public void setBackground(Drawable background) {
         if(Build.VERSION.SDK_INT >= 16){
-            setBackground(background);
+            //setBackground(background);
+            super.setBackground(background);
         }else {
             this.setBackgroundDrawable(background);
         }
