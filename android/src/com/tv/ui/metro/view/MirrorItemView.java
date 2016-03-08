@@ -7,7 +7,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import com.tv.ui.metro.R;
 
-
+/**
+ * 
+ * 类描述: 倒影控件
+ * 
+ * @author LIZH(710065428@qq.com)
+ * @date 2016-3-8
+ *
+ */
 public class MirrorItemView extends FrameLayout{
 	private View mContentView;
 	protected boolean mHasReflection = true;
@@ -83,6 +90,10 @@ public class MirrorItemView extends FrameLayout{
         }
 	}
 	
+	/**
+	 * 给ondraw再绘制一下.
+	 * @return
+	 */
 	public Bitmap getReflectBitmap(){
 		return mReflectBitmap;
 	}

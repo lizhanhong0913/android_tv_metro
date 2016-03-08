@@ -28,6 +28,14 @@ import com.tv.ui.metro.model.Image.Ani;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * 类描述: 每一个单元格
+ * 
+ * @author LIZH(710065428@qq.com)
+ * @date 2016-3-8
+ *
+ */
 public class RecommendCardView extends RelativeLayout {
 
 	private static String TAG = "RecommendCardView";
@@ -80,15 +88,15 @@ public class RecommendCardView extends RelativeLayout {
 	public RecommendCardView(Context context, int viewType) {
 		super(context);
 		switch (viewType) {
-		case MetroLayout.Vertical:
+		case MetroLayout.Vertical:// 垂直占两格
 			base_res_id = R.layout.metro_vertical_item;
 			default_background_id = R.drawable.icon_v_default;
 			break;
-		case MetroLayout.Horizontal:
+		case MetroLayout.Horizontal:// 横向占两格
 			base_res_id = R.layout.metro_horizontal_item;
 			default_background_id = R.drawable.icon_h_default;
 			break;
-		case MetroLayout.Normal:
+		case MetroLayout.Normal:// 占一格
 			base_res_id = R.layout.base_metro_item;
 			default_background_id = R.drawable.icon_normal_default;
 			break;

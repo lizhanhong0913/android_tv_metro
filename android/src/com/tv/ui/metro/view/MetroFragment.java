@@ -18,7 +18,9 @@ import com.tv.ui.metro.model.GenericAlbum;
 
 public class MetroFragment extends Fragment {
     private final String TAG = "MetroFragment";
+    // 布局框
 	public MetroLayout mMetroLayout;
+	// 横向滚动窗口
     SmoothHorizontalScrollView mHorizontalScrollView;
 	private int tab_count;
 	private int tab_index;

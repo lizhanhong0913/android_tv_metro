@@ -13,6 +13,14 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import com.tv.ui.metro.R;
 
+/**
+ * 
+ * 类描述: 最上层放大框控件 (放大显示那个)
+ * 
+ * @author LIZH(710065428@qq.com)
+ * @date 2016-3-8
+ *
+ */
 public class MetroCursorView extends View {
 	private View mFocusView;
 	private View mUnFocusView;
@@ -26,7 +34,7 @@ public class MetroCursorView extends View {
 	private Rect mRect = new Rect();
 	private boolean mMirror = false; 
 
-
+	// 动画初始化
 	ObjectAnimator anim = ObjectAnimator.ofFloat(this, "ScaleUp", 
 			new float[] { 1.0F, 1.1F }).setDuration(getResources().getInteger(R.integer.scale_up_duration));
 	ObjectAnimator anim1 = ObjectAnimator.ofFloat(this, "ScaleDown", 
@@ -60,6 +68,7 @@ public class MetroCursorView extends View {
 
 	@Override
     protected void onDraw(Canvas canvas) {
+	    // setScaleUp 更新 mScaleUp变量.
 		drawCursorView(canvas,mFocusView,mScaleUp, true);
 		//if(anim1.isRunning())
         {
@@ -90,10 +99,13 @@ public class MetroCursorView extends View {
 			int left = (int)(mFocusLocation[0]-mLocation[0]-width*(scale-1)/2);
 			int top = (int)(mFocusLocation[1]-mLocation[1]-height*(scale-1)/2);
 			canvas.translate(left, top);
+			// 注意 scale, scale 这两个函数... ... 这个scale 是 mScaleUp 传入的
 	    	canvas.scale(scale, scale);
 
+	    	// 绘制倒影
 	    	//view.draw(canvas);
 			if(view instanceof MirrorItemView ){
+			 // 获取倒影bitmap
 				Bitmap bmp = ((MirrorItemView)view).getReflectBitmap();
 				if(bmp != null)
 				    canvas.drawBitmap(bmp, 0, height, null);
@@ -101,10 +113,12 @@ public class MetroCursorView extends View {
 	    	
 	    	if(focus){
 				Rect padding = new Rect();
+				// 阴影的绘制
 				mDrawableShadow.getPadding(padding);
 				mDrawableShadow.setBounds(-padding.left, -padding.top, width+padding.right, height+padding.bottom);
 				mDrawableShadow.setAlpha((int)(255*(scale-1)*10));
-		    	mDrawableShadow.draw(canvas); 
+		    	mDrawableShadow.draw(canvas);
+		    	 // 边框的绘制
 		    	mDrawableWhite.getPadding(padding);
 		    	mDrawableWhite.setBounds(-padding.left-1, -padding.top-1, width+padding.right+1, height+padding.bottom+1);
 		    	mDrawableWhite.setAlpha((int)(255*(scale-1)*10));

@@ -35,10 +35,25 @@ public class MetroLayout extends FrameLayout implements View.OnFocusChangeListen
     View mRightView;
 	
 	float mDensityScale = 1.0f;
+	/**
+	 * 竖直块的宽度
+	 */
     private static int ITEM_V_WIDTH  = -1;
+    /**
+     * 竖直块的高度
+     */
     private static int ITEM_V_HEIGHT = -1;
+    /**
+     * 水平块的宽度
+     */
     private static int ITEM_H_WIDTH  = -1;
+    /**
+     * 水平块的高度
+     */
     private static int ITEM_H_HEIGHT  = -1;
+    /**
+     * 方块的宽高
+     */
     private static int ITEM_NORMAL_SIZE = -1;
     private static int mirror_ref_height= -1;
 
@@ -111,12 +126,14 @@ public class MetroLayout extends FrameLayout implements View.OnFocusChangeListen
 		mViewList.add(new WeakReference<View>(child));
 		View result = child;
 		switch(celltype){
-		case Vertical:
+		case Vertical:// 垂直
 			flp = new LayoutParams(
 					(int)(ITEM_V_WIDTH*mDensityScale),
 					(int)(ITEM_V_HEIGHT*mDensityScale));
-			if(mMirror){
+			if(mMirror){// 是否开启倒影
+			    // 用于倒影的子控件
 				MirrorItemView mirror = new MirrorItemView(mContext);
+				// 添加子控件
 				mirror.setContentView(child, flp);
 				flp.bottomMargin = mirror_ref_height;
 				flp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
